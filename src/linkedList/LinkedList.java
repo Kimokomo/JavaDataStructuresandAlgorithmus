@@ -56,4 +56,69 @@ public class LinkedList {
     }
     length++;
   }
+
+  public Node removeLast() {
+    if (length == 0)
+      return null;  // falls die liste leer ist
+    Node temp = head;
+    Node pre = head;
+    while (tail.next != null) {
+      pre = temp;
+      temp = temp.next;
+    }
+    tail = pre;
+    tail.next = null;
+    length--;
+    // falls die liste leer ist ABER da ist die length um -1 reduzierrt worden
+    if (length == 0) {
+      head = null;
+      tail = null;
+    }
+    return temp;
+  }
+
+  public void prepend(int value) {
+    Node newNode = new Node(value);
+    if (length == 0) {
+      head = newNode;
+      tail = newNode;
+    } else {
+      newNode.next = head;
+      head = newNode;
+    }
+    length++;
+  }
+
+  public Node removeFirst() {
+    if (length == 0)
+      return null;
+    Node temp = head;
+    head = head.next;
+    temp.next = null;
+    length--;
+    if (length == 0) {
+      tail = null;
+    }
+    return temp;
+  }
+
+  public Node get(int index) {
+    if (index < 0 || index >= length) {
+      return null;
+    }
+    Node temp = head;
+    for (int i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+    return temp;
+  }
+
+  public boolean set(int index, int value) {
+    Node temp = get(index);
+    if (temp != null) {
+      temp.value = value;
+      return true;
+    }
+    return false;
+  }
 }
