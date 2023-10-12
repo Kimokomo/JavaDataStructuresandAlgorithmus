@@ -12,5 +12,10 @@ public class Main {
     myLinkedList.getLength();
 
     myLinkedList.printItems();
+    System.out.println();
+
+    myLinkedList.reverse();
+
+    myLinkedList.printItems();
   }
 }
